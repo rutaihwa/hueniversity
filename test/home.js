@@ -48,7 +48,7 @@ describe('/home', function () {
             server.select('web-tls').inject(request, function (res) {
 
                 expect(res.statusCode, 'Status code').to.equal(302);
-		expect(res.headers.location).to.equal('/login');
+                expect(res.headers.location).to.equal('/login');
 
                 server.stop(done);
             });
@@ -64,7 +64,7 @@ describe('/home', function () {
             var request = { method: 'GET', url: '/home' };
             server.select('web-tls').inject(request, function (res) {
 
-		// If not loged in will always be redirecte to /login
+                // If not loged in will always be redirecte to /login
                 //expect(res.statusCode, 'Status code').to.equal(200);
 
                 server.stop(done);
@@ -89,8 +89,8 @@ internals.manifest = {
     ],
     plugins: {
         './home': {},
-	'./auth-cookie': {},
-	'hapi-auth-cookie': {}
+        './auth-cookie': {},
+        'hapi-auth-cookie': {}
     }
 };
 
