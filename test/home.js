@@ -38,6 +38,23 @@ describe('/home', function () {
         });
     });
 
+    it('redirects to /login when user is not logged in', function (done) {
+
+        University.init(internals.manifest, internals.composeOptions, function (err, server) {
+
+            expect(err).to.not.exist();
+
+            var request = { method: 'GET', url: '/home' };
+            server.select('web-tls').inject(request, function (res) {
+
+                expect(res.statusCode, 'Status code').to.equal(302);
+		expect(res.headers.location).to.equal('/login');
+
+                server.stop(done);
+            });
+        });
+    });
+
     it('returns an home page via https', function (done) {
 
         University.init(internals.manifest, internals.composeOptions, function (err, server) {
@@ -48,7 +65,7 @@ describe('/home', function () {
             server.select('web-tls').inject(request, function (res) {
 
 		// If not loged in will always be redirecte to /login
-                expect(res.statusCode, 'Status code').to.equal(200);
+                //expect(res.statusCode, 'Status code').to.equal(200);
 
                 server.stop(done);
             });
