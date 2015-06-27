@@ -5,6 +5,7 @@ var Lab = require('lab');
 var University = require('../lib');
 var Path = require('path');
 var Config = require('../lib/config');
+var Auth = require('hapi-auth-cookie');
 
 // Declare internals
 
@@ -46,6 +47,7 @@ describe('/home', function () {
             var request = { method: 'GET', url: '/home' };
             server.select('web-tls').inject(request, function (res) {
 
+		// If not loged in will always be redirecte to /login
                 expect(res.statusCode, 'Status code').to.equal(200);
 
                 server.stop(done);
@@ -69,7 +71,9 @@ internals.manifest = {
         }
     ],
     plugins: {
-        './home': {}
+        './home': {},
+	'./auth-cookie': {},
+	'hapi-auth-cookie': {}
     }
 };
 
