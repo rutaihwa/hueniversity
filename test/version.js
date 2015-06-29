@@ -69,7 +69,9 @@ internals.manifest = {
         }
     ],
     plugins: {
-        './version': {}
+        './version': {},
+	'./auth-cookie': {},
+	'hapi-auth-cookie': {}
     }
 };
 

@@ -94,7 +94,9 @@ describe('/index', function () {
             }
         ],
         plugins: {
-            './version': {}
+            './version': {},
+            './auth-cookie': {},
+            'hapi-auth-cookie': {}
         }
     };
 });
